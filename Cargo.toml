@@ -1,0 +1,16 @@
+[package]
+name = "trial"
+authors = ["Name:HONOREE,email:kingyua@gmail.com"]
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web = "4.0" # for server
+serde = { version = "1.0", features = ["derive"] } # for serializing and deserializing 
+serde_json = "1.0"
+uuid = { version = "1.2", features = ["serde","v4"] } # For unique movie IDs
+reqwest = { version = "0.11", features = ["json"] }
+
+
+[dev-dependencies]
+actix-rt = "2.5"

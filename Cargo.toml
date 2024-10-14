@@ -5,12 +5,23 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-actix-web = "4.0" # for server
-serde = { version = "1.0", features = ["derive"] } # for serializing and deserializing 
+dotenv = "0.15"
+actix-web = "4.0"  # for server
+actix-cors = "0.6"
+actix-session ={ version = "0.10", features = ["cookie-session"] }
+serde = { version = "1.0", features = ["derive"] }  # for serializing and deserializing 
 serde_json = "1.0"
-uuid = { version = "1.2", features = ["serde","v4"] } # For unique movie IDs
+uuid = { version = "1.2", features = ["serde", "v4"] }  # For unique movie IDs
 reqwest = { version = "0.11", features = ["json"] }
+sqlx = { version = "0.8.2", features = ["runtime-tokio-native-tls", "postgres", "macros","uuid","bigdecimal"] }  # For database connection
+tokio = { version = "1", features = ["full"] }  # For async runtime
+actix-identity = "0.8"  # For authentication sessions
+bcrypt = "0.10"  # For password hashing
+log = "0.4" # This is the current version of log
 
+diesel = { version = "2.2.4", features = ["postgres"] }
+#rust_decimal = "1.29.0"
+bigdecimal = { version = "0.4", features = ["serde"] }
 
 [dev-dependencies]
 actix-rt = "2.5"

@@ -1,13 +1,19 @@
-use actix_web::web;
-use crate::handlers::{add_movie, get_movies, mark_watched, delete_movie};
 
-// Configure routes
+use actix_web::web;
+use crate::handlers::{add_movie, get_movies, register_user, login_user, logout_user};
+
+
 pub fn configure(cfg: &mut web::ServiceConfig) {
     cfg.service(
         web::scope("/movies")
-            .route("", web::post().to(add_movie))          // Add movie
-            .route("", web::get().to(get_movies))          // Get all movies
-            .route("/{id}/watch", web::put().to(mark_watched)) // Mark as watched
-            .route("/{id}", web::delete().to(delete_movie)),  // Delete movie
+            // No need to wrap IdentityMiddleware here, it's already applied in main.rs
+            .route("", web::post().to(add_movie))
+            .route("", web::get().to(get_movies))
+    )
+    .service(
+        web::scope("/auth")
+            .route("/register", web::post().to(register_user))
+            .route("/login", web::post().to(login_user))
+            .route("/logout", web::post().to(logout_user))
     );
 }
